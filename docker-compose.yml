@@ -1,0 +1,11 @@
+services:
+  minecraft:
+    build: .
+    container_name: modded_minecraft
+    ports:
+      - "25565:25565"
+    volumes:
+      - ./data:/minecraft
+    environment:
+      - EULA=true
+    tty: true
