@@ -1,11 +1,25 @@
 services:
-  minecraft:
-    build: .
-    container_name: modded_minecraft
+  mc:
+    image: itzg/minecraft-server:java17
+    volumes:
+    - ./data:/data
+    - ./modpacks:/modpacks:ro
+    environment:
+      EULA: "true"
+      TYPE: FORGE
+      VERSION: "1.20.1"
+      FORGE_VERSION: "47.2.20"
+      GENERIC_PACK: /modpacks/server-1.0.6.zip
+      OVERRIDE_SERVER_PROPERTIES: "TRUE"
+      MAX_MEMORY: 8G
+      MAX_PLAYERS: 10
+      MOTD: "Minecraft ATM 9: To the Sky"
+      SPAWN_PROTECTION: 0
+      ENFORCE_WHITELIST: "false"
+      OPS: VerdantDaydream
+      DIFFICULTY: normal
     ports:
       - "25565:25565"
-    volumes:
-      - ./data:/minecraft
-    environment:
-      - EULA=true
-    tty: true
+
+volumes:
+  data: {}
